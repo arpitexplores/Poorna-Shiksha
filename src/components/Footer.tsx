@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col items-center space-y-4">
           <Link to="/">
-            <img src={logo} alt="Poorna Shiksha" className="h-12" />
+            <img src={logo} alt="Poorna Shiksha" className="h-14" />
           </Link>
           <div className="flex items-center justify-center gap-2 text-muted-foreground">
             <span>Made with</span>
