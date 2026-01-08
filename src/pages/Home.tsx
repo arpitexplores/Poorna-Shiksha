@@ -1,9 +1,32 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Heart, BookOpen, Users, Sparkles } from "lucide-react";
+import { Heart, BookOpen, Users, Sparkles, ArrowRight, MapPin, Calendar, GraduationCap } from "lucide-react";
 import heroImage from "@/assets/hero-teaching.jpg";
+import activityArt from "@/assets/activity-art.jpg";
+import activityOutdoor from "@/assets/activity-outdoor.jpg";
+import activityReading from "@/assets/activity-reading.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Home = () => {
+  const stats = [
+    { number: "12+", label: "Children Learning", icon: Users },
+    { number: "3", label: "Years Running", icon: Calendar },
+    { number: "50+", label: "Educational Outings", icon: MapPin },
+    { number: "100%", label: "Love & Dedication", icon: Heart },
+  ];
+
+  const galleryImages = [
+    { src: activityArt, alt: "Children doing art activities" },
+    { src: activityOutdoor, alt: "Outdoor learning experience" },
+    { src: activityReading, alt: "Reading session with children" },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -29,6 +52,30 @@ const Home = () => {
                 Support the Kids
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Stats */}
+      <section className="bg-primary/5 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div key={index} className="text-center space-y-2">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <Icon className="text-primary" size={24} />
+                  </div>
+                  <div className="font-serif text-3xl md:text-4xl font-bold text-primary">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -86,6 +133,77 @@ const Home = () => {
               <p className="text-muted-foreground">
                 Field trips to gardens, museums, and zoos that bring learning to life beyond the classroom.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Gallery Carousel */}
+      <section className="container mx-auto px-4 py-16 md:py-20">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-4">
+            Moments of Joy & Learning
+          </h2>
+          <p className="text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+            A glimpse into our everyday activities and special outings
+          </p>
+          <Carousel className="w-full">
+            <CarouselContent>
+              {galleryImages.map((image, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-2">
+                    <div className="overflow-hidden rounded-lg aspect-[4/3]">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* Meet Seema Section */}
+      <section className="bg-secondary/30 py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              {/* Photo placeholder */}
+              <div className="flex justify-center md:justify-end order-1 md:order-2">
+                <div className="w-64 h-64 md:w-80 md:h-80 bg-muted rounded-full flex items-center justify-center border-4 border-primary/20 overflow-hidden">
+                  <div className="text-center p-4">
+                    <GraduationCap className="w-16 h-16 text-primary/40 mx-auto mb-2" />
+                    <p className="text-muted-foreground text-sm">Photo coming soon</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Text content */}
+              <div className="space-y-6 order-2 md:order-1">
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">
+                  Meet Seema Singla
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Seema Singla is the heart and soul behind Poorna Shiksha. What started as a simple desire to help
+                  neighborhood children has grown into a nurturing learning community that transforms young lives every day.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  With her gentle approach and unwavering dedication, she has created a space where children feel
+                  safe to learn, ask questions, and dream big.
+                </p>
+                <Link to="/about">
+                  <Button className="bg-primary hover:bg-primary/90 group">
+                    Read Her Story
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
