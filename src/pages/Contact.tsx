@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -108,17 +108,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">contact@learningwithlove.org</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 p-4 bg-card rounded-lg">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Phone className="text-primary" size={20} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                      <p className="text-muted-foreground">+91 XXXXX XXXXX</p>
+                      <p className="text-muted-foreground">contact@poornashiksha.org</p>
                     </div>
                   </div>
 
