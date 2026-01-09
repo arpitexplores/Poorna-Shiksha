@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Palette, Bus, Apple, Heart } from "lucide-react";
+import { BookOpen, Palette, Bus, Apple, Heart, ArrowRight } from "lucide-react";
 
 const Support = () => {
   const needsItems = [
@@ -28,9 +29,6 @@ const Support = () => {
       amount: "₹100-300 per day"
     },
   ];
-
-  // UPI ID - replace with actual UPI ID
-  const upiId = "example@upi"; // Replace this with the actual UPI ID
 
   return (
     <div className="min-h-screen py-12 md:py-16">
@@ -90,37 +88,21 @@ const Support = () => {
               supplies, creative materials, and enriching experiences that these children wouldn't otherwise have access to.
             </p>
 
-            <div className="max-w-md mx-auto space-y-4">
-              <div className="bg-card p-6 rounded-lg space-y-4">
-                <h3 className="font-semibold text-lg text-foreground text-center">
-                  UPI Payment
+            <div className="max-w-md mx-auto">
+              <div className="bg-card p-6 rounded-lg space-y-4 text-center">
+                <h3 className="font-semibold text-lg text-foreground">
+                  Interested in Donating?
                 </h3>
-                <p className="text-center text-muted-foreground">
-                  Send your contribution directly via UPI
+                <p className="text-muted-foreground">
+                  Whether you'd like to contribute financially, donate books and materials, or volunteer your time—we'd love to hear from you.
                 </p>
-                <div className="bg-muted p-4 rounded text-center">
-                  <p className="text-sm text-muted-foreground mb-2">UPI ID:</p>
-                  <p className="font-mono text-lg font-semibold text-primary break-all">
-                    {upiId}
-                  </p>
-                </div>
-                <Button 
-                  className="w-full bg-primary hover:bg-primary/90"
-                  onClick={() => {
-                    navigator.clipboard.writeText(upiId);
-                    // You could add a toast notification here
-                  }}
-                >
-                  Copy UPI ID
-                </Button>
+                <Link to="/contact">
+                  <Button className="w-full bg-primary hover:bg-primary/90 group">
+                    Contact Us to Donate
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </div>
-            </div>
-
-            <div className="text-center text-sm text-muted-foreground max-w-2xl mx-auto mt-6">
-              <p>
-                If you'd like to donate in other ways (books, materials, or volunteering your time),
-                please reach out through our contact page.
-              </p>
             </div>
           </div>
 
