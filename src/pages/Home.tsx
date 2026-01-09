@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Heart, BookOpen, Users, Sparkles, ArrowRight, MapPin, Calendar, GraduationCap } from "lucide-react";
+import { Heart, BookOpen, Users, Sparkles, ArrowRight, MapPin, Calendar } from "lucide-react";
 import heroImage from "@/assets/hero-teaching.jpg";
 import activityArt from "@/assets/activity-art.jpg";
 import activityOutdoor from "@/assets/activity-outdoor.jpg";
 import activityReading from "@/assets/activity-reading.jpg";
+import seemaHomePhoto from "@/assets/seema-singla-home.jpg";
 import {
   Carousel,
   CarouselContent,
@@ -174,13 +175,14 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 items-center">
-              {/* Photo placeholder */}
+              {/* Seema Photo */}
               <div className="flex justify-center md:justify-end order-1 md:order-2">
-                <div className="w-64 h-64 md:w-80 md:h-80 bg-muted rounded-full flex items-center justify-center border-4 border-primary/20 overflow-hidden">
-                  <div className="text-center p-4">
-                    <GraduationCap className="w-16 h-16 text-primary/40 mx-auto mb-2" />
-                    <p className="text-muted-foreground text-sm">Photo coming soon</p>
-                  </div>
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-primary/20 overflow-hidden">
+                  <img 
+                    src={seemaHomePhoto} 
+                    alt="Seema Singla - Founder of Poorna Shiksha" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               
@@ -197,12 +199,14 @@ const Home = () => {
                   With her gentle approach and unwavering dedication, she has created a space where children feel
                   safe to learn, ask questions, and dream big.
                 </p>
-                <Link to="/about">
-                  <Button className="bg-primary hover:bg-primary/90 group">
-                    Read Her Story
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+                <div className="pt-2">
+                  <Link to="/about">
+                    <Button className="bg-primary hover:bg-primary/90 group">
+                      Read Her Story
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
