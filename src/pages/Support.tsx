@@ -89,19 +89,21 @@ const Support = () => {
             </p>
 
             <div className="max-w-md mx-auto">
-              <div className="bg-card p-6 rounded-lg space-y-4 text-center">
+              <div className="bg-card p-6 rounded-lg space-y-6 text-center">
                 <h3 className="font-semibold text-lg text-foreground">
                   Interested in Donating?
                 </h3>
                 <p className="text-muted-foreground">
                   Whether you'd like to contribute financially, donate books and materials, or volunteer your time—we'd love to hear from you.
                 </p>
-                <Link to="/contact">
-                  <Button className="w-full bg-primary hover:bg-primary/90 group">
-                    Contact Us to Donate
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+                <div className="pt-2">
+                  <Link to="/contact">
+                    <Button className="w-full bg-primary hover:bg-primary/90 group">
+                      Contact Us to Donate
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
