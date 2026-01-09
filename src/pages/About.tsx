@@ -1,4 +1,5 @@
 import { Heart, BookOpen, Users, Sparkles, MapPin } from "lucide-react";
+import seemaPhoto from "@/assets/seema-singla.jpg";
 
 const About = () => {
   return (
@@ -22,15 +23,14 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 items-center">
-              {/* Photo Placeholder */}
+              {/* Founder Photo */}
               <div className="order-2 md:order-1">
-                <div className="aspect-[4/5] bg-muted rounded-2xl flex items-center justify-center border-2 border-dashed border-primary/30">
-                  <div className="text-center p-8 space-y-3">
-                    <div className="w-20 h-20 bg-primary/20 rounded-full mx-auto flex items-center justify-center">
-                      <Heart className="w-10 h-10 text-primary" />
-                    </div>
-                    <p className="text-muted-foreground text-sm">Photo coming soon</p>
-                  </div>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-lg">
+                  <img 
+                    src={seemaPhoto} 
+                    alt="Seema Singla - Founder of Poorna Shiksha" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               
