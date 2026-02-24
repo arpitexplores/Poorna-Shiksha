@@ -2,9 +2,9 @@
   "site": {
     "brandName": "Poorna Shiksha",
     "siteName": "Poorna Shiksha",
-    "siteUrl": "https://www.poornashiksha.com",
+    "siteUrl": "https://poornashiksha.com",
     "defaultDescription": "Poorna Shiksha is a home-based learning initiative in Delhi supporting underprivileged children through academics, creativity, and life-changing educational experiences.",
-    "defaultOgImage": "https://www.poornashiksha.com/og-image.png",
+    "defaultOgImage": "https://poornashiksha.com/og-image.png",
     "locale": "en_IN"
   },
   "routes": [

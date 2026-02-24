@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "seo:generate": "node scripts/generate-seo-files.mjs",
+    "prerender": "node scripts/prerender-routes.mjs",
     "seo:submit-sitemap": "node scripts/submit-sitemap.mjs",
     "build": "vite build",
     "prebuild": "npm run seo:generate",
-    "postbuild": "npm run seo:submit-sitemap",
+    "postbuild": "npm run prerender && npm run seo:submit-sitemap",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

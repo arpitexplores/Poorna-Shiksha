@@ -84,7 +84,8 @@ Build flow:
 
 1. `prebuild` runs `npm run seo:generate`
 2. `build` creates production assets
-3. `postbuild` runs `npm run seo:submit-sitemap`
+3. `postbuild` runs `npm run prerender` to create route-specific HTML files in `dist/`
+4. `postbuild` then runs `npm run seo:submit-sitemap`
 
 ### Google Search Console auto submission (optional)
 
@@ -92,7 +93,7 @@ To enable automatic sitemap submission to Google, configure these environment va
 
 - `GOOGLE_SERVICE_ACCOUNT_EMAIL`
 - `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` (keep `\n` in the value; script converts it)
-- `GOOGLE_SEARCH_CONSOLE_SITE_URL` (example: `https://www.poornashiksha.com/` or `sc-domain:poornashiksha.com`)
+- `GOOGLE_SEARCH_CONSOLE_SITE_URL` (example: `https://poornashiksha.com/` or `sc-domain:poornashiksha.com`)
 
 Also:
 

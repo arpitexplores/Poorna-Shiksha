@@ -6,4 +6,4 @@ Disallow: /api/
 Disallow: /auth/
 Disallow: /dashboard/
 
-Sitemap: https://www.poornashiksha.com/sitemap.xml
+Sitemap: https://poornashiksha.com/sitemap.xml
