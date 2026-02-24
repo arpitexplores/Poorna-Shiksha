@@ -64,6 +64,22 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/c564aeba-7e64-4361-930c-eb942d1e9981) and click on Share -> Publish.
 
+### Deployment without SPA fallback issues (recommended)
+
+To avoid hosts rewriting `/sitemap.xml` or `/robots.txt` to `index.html`, run the included production server:
+
+1. Build:
+   - `npm run build`
+2. Start:
+   - `npm run start`
+
+This server serves real files from `dist/` first (including `sitemap.xml` and `robots.txt`) and only then falls back to `index.html` for client-side routes.
+
+For Replit Deployments, choose a server deployment (Autoscale/Reserved VM) and use:
+
+- Build command: `npm run build`
+- Run command: `npm run start`
+
 ## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!

@@ -13,7 +13,9 @@
     "postbuild": "npm run prerender && npm run seo:submit-sitemap",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.mjs",
+    "serve:prod": "node server.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
