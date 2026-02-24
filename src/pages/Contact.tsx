@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { Mail, MapPin } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { Mail, MapPin } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/arpit.singla@yahoo.com";
+const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/contact@poornashiksha.com";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,6 @@ const Contact = () => {
     e.preventDefault();
 
     if (website) {
-      // Honeypot field: silently ignore likely bot submissions.
       return;
     }
 
@@ -28,7 +28,6 @@ const Contact = () => {
     const email = formData.email.trim();
     const message = formData.message.trim();
 
-    // Basic validation
     if (!name || !email || !message) {
       toast.error("Please fill in all fields");
       return;
@@ -56,134 +55,148 @@ const Contact = () => {
       }
 
       toast.success("Message sent successfully. We'll get back to you soon.");
-
-      setFormData({
-        name: "",
-        email: "",
-        message: ""
-      });
+      setFormData({ name: "", email: "", message: "" });
     } catch {
       toast.error("Couldn't send message right now. Please try again in a moment.");
     } finally {
       setIsSubmitting(false);
     }
   };
-  return <div className="min-h-screen py-12 md:py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="text-center space-y-4">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground">
-              Get in Touch
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+
+  return (
+    <div className="page-shell">
+      <section className="section-alt section-pad">
+        <div className="section-shell">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <p className="eyebrow">Contact</p>
+            <h1 className="section-heading">Get in Touch</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-xl text-muted-foreground">
               We'd love to hear from you. Whether you want to support, volunteer, or simply learn more about our work
             </p>
-          </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Contact Form */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                  Send Us a Message
-                </h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
+      <section className="section-pad">
+        <div className="section-shell">
+          <div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-2 lg:gap-10">
+            <Reveal className="lg:sticky lg:top-28">
+              <div className="panel-card p-6 md:p-8">
+                <h2 className="text-4xl font-black text-foreground">Send Us a Message</h2>
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <input
                     type="text"
                     name="website"
                     value={website}
-                    onChange={e => setWebsite(e.target.value)}
+                    onChange={(e) => setWebsite(e.target.value)}
                     className="hidden"
                     tabIndex={-1}
                     autoComplete="off"
                     aria-hidden="true"
                   />
+
                   <div>
-                    <label htmlFor="name" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="name" className="mb-2 block text-sm font-semibold text-foreground">
                       Your Name
                     </label>
-                    <Input id="name" type="text" placeholder="Enter your name" value={formData.name} required onChange={e => setFormData({
-                    ...formData,
-                    name: e.target.value
-                  })} className="w-full" />
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Enter your name"
+                      value={formData.name}
+                      required
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full"
+                    />
                   </div>
+
                   <div>
-                    <label htmlFor="email" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="email" className="mb-2 block text-sm font-semibold text-foreground">
                       Your Email
                     </label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" value={formData.email} required onChange={e => setFormData({
-                    ...formData,
-                    email: e.target.value
-                  })} className="w-full" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData.email}
+                      required
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full"
+                    />
                   </div>
+
                   <div>
-                    <label htmlFor="message" className="text-sm font-medium text-foreground block mb-2">
+                    <label htmlFor="message" className="mb-2 block text-sm font-semibold text-foreground">
                       Your Message
                     </label>
-                    <Textarea id="message" placeholder="Tell us how you'd like to help or what you'd like to know..." value={formData.message} required onChange={e => setFormData({
-                    ...formData,
-                    message: e.target.value
-                  })} className="w-full min-h-[150px]" />
+                    <Textarea
+                      id="message"
+                      placeholder="Tell us how you'd like to help or what you'd like to know..."
+                      value={formData.message}
+                      required
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="min-h-[190px] w-full"
+                    />
                   </div>
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+
+                  <Button type="submit" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
-            </div>
+            </Reveal>
 
-            {/* Contact Information */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                  Other Ways to Reach Us
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4 p-4 bg-card rounded-lg">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="text-primary" size={20} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">arpit.singla@yahoo.com</p>
+            <Reveal delay={120} className="space-y-6">
+              <div className="panel-card p-6 md:p-8">
+                <h2 className="text-4xl font-black text-foreground">Other Ways to Reach Us</h2>
+                <div className="mt-6 space-y-4">
+                  <div className="rounded-xl border border-border bg-surface2 p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Mail className="text-primary" size={20} />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-foreground">Email</h3>
+                        <p className="mt-1 text-muted-foreground">contact@poornashiksha.com</p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-card rounded-lg">
-                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <MapPin className="text-primary" size={20} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">Location</h3>
-                      <p className="text-muted-foreground">Delhi, India</p>
+                  <div className="rounded-xl border border-border bg-surface2 p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <MapPin className="text-primary" size={20} />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-foreground">Location</h3>
+                        <p className="mt-1 text-muted-foreground">Delhi, India</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-muted p-6 rounded-lg space-y-3">
-                <h3 className="font-serif text-lg font-semibold text-foreground">
-                  Want to Visit?
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+              <div className="rounded-2xl border border-border bg-surfaceAccent p-6 shadow-sm md:p-8">
+                <h3 className="text-3xl font-black text-foreground">Want to Visit?</h3>
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   We welcome visitors who are genuinely interested in learning about our work or exploring ways to support.
                   Please reach out in advance so we can arrange a suitable time that doesn't disrupt the children's learning.
                 </p>
               </div>
-
-              <div className="bg-muted p-6 rounded-lg space-y-3">
-                <h3 className="font-serif text-lg font-semibold text-foreground">
-                  Looking to Volunteer?
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  We occasionally welcome volunteers who can contribute their time and skills—whether it's teaching,
-                  organizing activities, or helping with outings. Let us know your interests and availability!
-                </p>
-              </div>
-            </div>
+            </Reveal>
           </div>
+
+          <Reveal delay={180} className="mx-auto mt-8 max-w-6xl rounded-2xl border border-border bg-surfaceAccent p-6 shadow-sm md:p-8">
+            <h3 className="text-3xl font-black text-foreground">Looking to Volunteer?</h3>
+            <p className="mt-3 max-w-4xl leading-relaxed text-muted-foreground">
+              We occasionally welcome volunteers who can contribute their time and skills, whether it's teaching,
+              organizing activities, or helping with outings. Let us know your interests and availability!
+            </p>
+          </Reveal>
         </div>
-      </div>
-    </div>;
+      </section>
+    </div>
+  );
 };
+
 export default Contact;

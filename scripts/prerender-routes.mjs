@@ -90,7 +90,7 @@ const injectHomeStructuredData = (html) => {
     url: config.site.siteUrl,
     logo: config.site.defaultOgImage,
     description: config.site.defaultDescription,
-    email: "arpit.singla@yahoo.com",
+    email: "contact@poornashiksha.com",
     areaServed: "Delhi, India",
   };
 

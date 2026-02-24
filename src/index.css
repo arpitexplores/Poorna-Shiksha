@@ -8,35 +8,39 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 35 30% 97%;
-    --foreground: 25 15% 25%;
+    --background: 24 25% 97%;
+    --foreground: 222 47% 11%;
+
+    --surface-1: 24 25% 97%;
+    --surface-2: 24 18% 95%;
+    --surface-accent: 24 20% 92%;
 
     --card: 0 0% 100%;
-    --card-foreground: 25 15% 25%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 15% 25%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 15 65% 58%;
+    --primary: 19 91% 43%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 60% 65%;
-    --secondary-foreground: 25 15% 25%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 35 20% 90%;
-    --muted-foreground: 25 10% 45%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 215 16% 35%;
 
-    --accent: 150 45% 70%;
-    --accent-foreground: 25 15% 25%;
+    --accent: 220 14% 94%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 20% 88%;
-    --input: 35 20% 88%;
-    --ring: 15 65% 58%;
+    --border: 220 16% 88%;
+    --input: 220 16% 88%;
+    --ring: 20 85% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -46,6 +50,76 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans tracking-tight;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply min-h-screen bg-surface1;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+
+  .section-alt {
+    @apply bg-surface2;
+  }
+
+  .section-accent {
+    @apply bg-surfaceAccent;
+  }
+
+  .eyebrow {
+    @apply text-primary text-xs font-extrabold uppercase tracking-[0.2em];
+  }
+
+  .section-heading {
+    @apply mt-4 text-3xl md:text-5xl font-black text-foreground;
+  }
+
+  .panel-card {
+    @apply rounded-2xl bg-card border border-border shadow-md;
+  }
+
+  .feature-card {
+    @apply rounded-2xl bg-card border border-border p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition-property: opacity, transform;
+    transition-duration: 700ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
