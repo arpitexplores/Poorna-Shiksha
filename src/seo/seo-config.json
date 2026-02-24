@@ -1,0 +1,54 @@
+{
+  "site": {
+    "brandName": "Poorna Shiksha",
+    "siteName": "Poorna Shiksha",
+    "siteUrl": "https://www.poornashiksha.com",
+    "defaultDescription": "Poorna Shiksha is a home-based learning initiative in Delhi supporting underprivileged children through academics, creativity, and life-changing educational experiences.",
+    "defaultOgImage": "https://www.poornashiksha.com/og-image.png",
+    "locale": "en_IN"
+  },
+  "routes": [
+    {
+      "path": "/",
+      "title": "Empowering Children in Delhi",
+      "description": "Poorna Shiksha empowers underprivileged children in Delhi through academics, creativity, mentorship, and educational outings that build confidence.",
+      "changefreq": "weekly",
+      "priority": 1
+    },
+    {
+      "path": "/about",
+      "title": "Our Story",
+      "description": "Learn how Seema Singla started Poorna Shiksha and built a nurturing, home-based learning space for children from underserved communities in Delhi.",
+      "changefreq": "monthly",
+      "priority": 0.9
+    },
+    {
+      "path": "/activities",
+      "title": "Learning Activities",
+      "description": "Explore Poorna Shiksha activities including reading, art, storytelling, and educational outings that make learning joyful and practical for children.",
+      "changefreq": "monthly",
+      "priority": 0.8
+    },
+    {
+      "path": "/impact",
+      "title": "Our Impact",
+      "description": "Read impact stories, outcomes, and progress from children supported by Poorna Shiksha through consistent teaching, care, and life-enriching experiences.",
+      "changefreq": "monthly",
+      "priority": 0.8
+    },
+    {
+      "path": "/support",
+      "title": "Support Our Mission",
+      "description": "Support Poorna Shiksha with donations or volunteering to help provide books, supplies, snacks, and educational experiences for children in Delhi.",
+      "changefreq": "weekly",
+      "priority": 0.9
+    },
+    {
+      "path": "/contact",
+      "title": "Contact Us",
+      "description": "Contact Poorna Shiksha to donate, volunteer, visit, or learn more about our work with underprivileged children and community learning in Delhi.",
+      "changefreq": "monthly",
+      "priority": 0.7
+    }
+  ]
+}

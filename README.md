@@ -71,3 +71,34 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## SEO automation setup
+
+This project now auto-generates SEO files from a shared config:
+
+- `src/seo/seo-config.json` (single source for site metadata and public routes)
+- `public/sitemap.xml` (generated during build)
+- `public/robots.txt` (generated during build)
+
+Build flow:
+
+1. `prebuild` runs `npm run seo:generate`
+2. `build` creates production assets
+3. `postbuild` runs `npm run seo:submit-sitemap`
+
+### Google Search Console auto submission (optional)
+
+To enable automatic sitemap submission to Google, configure these environment variables in Replit:
+
+- `GOOGLE_SERVICE_ACCOUNT_EMAIL`
+- `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` (keep `\n` in the value; script converts it)
+- `GOOGLE_SEARCH_CONSOLE_SITE_URL` (example: `https://www.poornashiksha.com/` or `sc-domain:poornashiksha.com`)
+
+Also:
+
+1. Add your site in Google Search Console.
+2. Add the service account email as an owner/user for that property.
+
+### Disable submission if needed
+
+Set `DISABLE_SITEMAP_SUBMIT=true` to skip post-build submission.

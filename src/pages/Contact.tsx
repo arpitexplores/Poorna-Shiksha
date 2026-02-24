@@ -4,31 +4,69 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, MapPin } from "lucide-react";
+
+const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/arpit.singla@yahoo.com";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   });
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [website, setWebsite] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (website) {
+      // Honeypot field: silently ignore likely bot submissions.
+      return;
+    }
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
     // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!name || !email || !message) {
       toast.error("Please fill in all fields");
       return;
     }
 
-    // In a real implementation, you would send this to a backend or email service
-    console.log("Form submitted:", formData);
-    toast.success("Thank you for reaching out! We'll get back to you soon.");
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      message: ""
-    });
+    try {
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: "New message from Poorna Shiksha website"
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      toast.success("Message sent successfully. We'll get back to you soon.");
+
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      });
+    } catch {
+      toast.error("Couldn't send message right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return <div className="min-h-screen py-12 md:py-16">
       <div className="container mx-auto px-4">
@@ -50,11 +88,21 @@ const Contact = () => {
                   Send Us a Message
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <input
+                    type="text"
+                    name="website"
+                    value={website}
+                    onChange={e => setWebsite(e.target.value)}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <div>
                     <label htmlFor="name" className="text-sm font-medium text-foreground block mb-2">
                       Your Name
                     </label>
-                    <Input id="name" type="text" placeholder="Enter your name" value={formData.name} onChange={e => setFormData({
+                    <Input id="name" type="text" placeholder="Enter your name" value={formData.name} required onChange={e => setFormData({
                     ...formData,
                     name: e.target.value
                   })} className="w-full" />
@@ -63,7 +111,7 @@ const Contact = () => {
                     <label htmlFor="email" className="text-sm font-medium text-foreground block mb-2">
                       Your Email
                     </label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" value={formData.email} onChange={e => setFormData({
+                    <Input id="email" type="email" placeholder="your.email@example.com" value={formData.email} required onChange={e => setFormData({
                     ...formData,
                     email: e.target.value
                   })} className="w-full" />
@@ -72,13 +120,13 @@ const Contact = () => {
                     <label htmlFor="message" className="text-sm font-medium text-foreground block mb-2">
                       Your Message
                     </label>
-                    <Textarea id="message" placeholder="Tell us how you'd like to help or what you'd like to know..." value={formData.message} onChange={e => setFormData({
+                    <Textarea id="message" placeholder="Tell us how you'd like to help or what you'd like to know..." value={formData.message} required onChange={e => setFormData({
                     ...formData,
                     message: e.target.value
                   })} className="w-full min-h-[150px]" />
                   </div>
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-                    Send Message
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
@@ -97,7 +145,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">contact@poornashiksha.com</p>
+                      <p className="text-muted-foreground">arpit.singla@yahoo.com</p>
                     </div>
                   </div>
 

@@ -6,6 +6,8 @@ import activityArt from "@/assets/activity-art.jpg";
 import activityOutdoor from "@/assets/activity-outdoor.jpg";
 import activityReading from "@/assets/activity-reading.jpg";
 import seemaHomePhoto from "@/assets/seema-singla-home.jpg";
+import StructuredData from "@/components/StructuredData";
+import { siteConfig } from "@/seo/config";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +17,25 @@ import {
 } from "@/components/ui/carousel";
 
 const Home = () => {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    logo: siteConfig.defaultOgImage,
+    description: siteConfig.defaultDescription,
+    email: "arpit.singla@yahoo.com",
+    areaServed: "Delhi, India"
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    description: siteConfig.defaultDescription
+  };
+
   const stats = [
     { number: "12+", label: "Children Learning", icon: Users },
     { number: "3", label: "Years Running", icon: Calendar },
@@ -30,6 +51,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <StructuredData id="schema-org-organization" data={organizationSchema} />
+      <StructuredData id="schema-org-website" data={websiteSchema} />
+
       {/* Hero Section */}
       <section className="relative">
         <div className="h-[500px] md:h-[600px] overflow-hidden">
