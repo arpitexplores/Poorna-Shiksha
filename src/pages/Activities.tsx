@@ -1,101 +1,80 @@
+import { Link } from "react-router-dom";
+import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import artImage from "@/assets/activity-art.jpg";
-import outdoorImage from "@/assets/activity-outdoor.jpg";
-import readingImage from "@/assets/activity-reading.jpg";
+import { Button } from "@/components/ui/button";
+import { activities } from "@/content/activities";
 
 const Activities = () => {
-  const activities = [
-    {
-      image: readingImage,
-      title: "Reading & Storytelling",
-      description: "Building literacy through engaging stories and shared reading experiences."
-    },
-    {
-      image: artImage,
-      title: "Art & Creativity",
-      description: "Expressing imagination through painting, drawing, and craft projects."
-    },
-    {
-      image: outdoorImage,
-      title: "Educational Outings",
-      description: "Learning comes alive with visits to gardens, museums, and the zoo."
-    },
-  ];
-
   return (
     <div className="page-shell">
-      <section className="section-alt section-pad">
+      <section className="activity-list-hero section-pad">
         <div className="section-shell">
-          <Reveal className="mx-auto max-w-4xl text-center">
-            <p className="eyebrow">Our Programs</p>
-            <h1 className="section-heading">Our Activities</h1>
-            <p className="mx-auto mt-5 max-w-2xl text-xl text-muted-foreground">
-              Moments of learning, creativity, and joy from our classroom and beyond
-            </p>
+          <Reveal className="mx-auto max-w-5xl text-center">
+            <p className="eyebrow">Activities & Updates</p>
+            <h1 className="section-heading">Stories from the classroom and beyond</h1>
+            <div className="mx-auto mt-8 max-w-4xl space-y-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+              <p>
+                Every day brings something new. Some days we dive into books and worksheets, building literacy and
+                numeracy skills. Other days we&apos;re covered in paint and glue, creating colorful artwork that fills the
+                children with pride.
+              </p>
+              <p>
+                Some of the most memorable moments happen outside the classroom. Trips to museums, gardens, and other new
+                places help children connect what they learn in books with the real world, ask questions, and imagine what
+                is possible.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
       <section className="section-pad">
         <div className="section-shell">
-          <div className="mx-auto grid max-w-6xl gap-7 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-5xl gap-7 md:grid-cols-2 xl:grid-cols-3">
             {activities.map((activity, index) => (
               <Reveal
-                key={activity.title}
+                key={activity.slug}
                 delay={index * 100}
-                className="feature-card overflow-hidden p-0"
+                className="activity-story-card overflow-hidden p-0"
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src={activity.image}
+                    src={activity.cardImage}
                     alt={activity.title}
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                     loading="lazy"
                     decoding="async"
-                    width={800}
-                    height={600}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  <div className="absolute left-5 top-5">
+                    <span className="rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur">
+                      {activity.category}
+                    </span>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground">{activity.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{activity.description}</p>
+                <div className="p-6 md:p-7">
+                  <div className="flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    <span className="inline-flex items-center gap-2">
+                      <CalendarDays className="h-4 w-4 text-primary" />
+                      {activity.dateLabel}
+                    </span>
+                    <span className="inline-flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-primary" />
+                      {activity.location}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-2xl font-black text-foreground">{activity.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{activity.summary}</p>
+                  <Button asChild className="mt-6">
+                    <Link to={`/activities/${activity.slug}`}>
+                      Read Story
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section-accent section-pad">
-        <div className="section-shell">
-          <Reveal className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-black text-foreground md:text-4xl">Learning Through Experience</h2>
-            <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-primary/30" />
-            <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                Every day brings something new. Some days we dive into books and worksheets, building literacy and numeracy
-                skills. Other days we're covered in paint and glue, creating colorful artwork that decorates our walls and
-                fills children with pride.
-              </p>
-              <p>
-                But some of the most magical moments happen outside the classroom. We take regular trips to places that
-                many of these children have never visited before, the zoo where they see animals they've only read about,
-                botanical gardens where they learn about plants and nature, and museums where history comes alive.
-              </p>
-              <p>
-                These experiences aren't just fun outings. They're opportunities for children to connect what they learn
-                in books with the real world, to ask questions, to wonder, and to dream about what's possible.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120} className="panel-card mx-auto mt-10 max-w-3xl p-6 text-center">
-            <p className="text-muted-foreground italic">
-              We're continually updating this gallery with photos from our sessions and outings. Check back regularly
-              to see what the children are learning and creating!
-            </p>
-          </Reveal>
         </div>
       </section>
     </div>

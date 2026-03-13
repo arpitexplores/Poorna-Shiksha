@@ -2,13 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { loadSeoConfig } from "./load-seo-config.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
-const configPath = path.join(projectRoot, "src", "seo", "seo-config.json");
-
-const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+const config = loadSeoConfig(projectRoot);
 const sitemapUrl = new URL("/sitemap.xml", config.site.siteUrl).toString();
 
 const encodeBase64Url = (input) =>

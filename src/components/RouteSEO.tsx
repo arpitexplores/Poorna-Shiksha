@@ -23,6 +23,7 @@ const RouteSEO = () => {
       description={pageSEO.description}
       path={pageSEO.path}
       type="website"
+      noindex={pageSEO.noindex}
     />
   );
 };

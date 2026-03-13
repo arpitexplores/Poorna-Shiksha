@@ -1,0 +1,64 @@
+{
+  "activities": [
+    {
+      "slug": "rail-museum-day",
+      "isSample": true,
+      "noindex": true,
+      "title": "Rail Museum Discovery Day",
+      "date": "2026-02-08",
+      "dateLabel": "8 February 2026",
+      "location": "National Rail Museum, Delhi",
+      "category": "Educational Outing",
+      "heroImage": "/activities/rail-museum-day/hero.jpg",
+      "cardImage": "/activities/rail-museum-day/group.jpg",
+      "summary": "An educational outing where the children explored real train engines, read display boards, asked thoughtful questions, and connected classroom learning to the wider world.",
+      "seoDescription": "A sample Poorna Shiksha activity story showing how an educational outing can be presented with photos, narrative, and learning outcomes.",
+      "supporterImpact": "Support from donors helped cover transport, snacks, and learning materials, making it possible for the children to step into a museum many of them had never visited before.",
+      "storySections": [
+        {
+          "heading": "How the day unfolded",
+          "paragraphs": [
+            "The day began with excitement long before the children entered the museum. For some, this was their first visit to a place like this, and that alone made the outing feel important. What they had seen only in books or heard about in conversations suddenly stood in front of them in full scale.",
+            "As they walked through the space, the children stopped to compare engines, read labels, point out shapes and colours, and ask how such large machines move. The outing quickly became more than a trip. It became a live lesson in observation, language, curiosity, and confidence."
+          ]
+        },
+        {
+          "heading": "What the children noticed",
+          "paragraphs": [
+            "The children were especially drawn to the size of the trains and the details that made each one different. They counted wheels, looked at windows and compartments, and tried to understand how people and goods travel across long distances.",
+            "What stood out most was the way the visit encouraged participation. Children who are often quiet during lessons began reading signboards aloud, asking questions without hesitation, and explaining their observations to one another."
+          ]
+        }
+      ],
+      "seemaRole": {
+        "heading": "Seema's role in the visit",
+        "paragraphs": [
+          "Seema made sure the outing remained a meaningful learning experience from beginning to end. Before the visit, she prepared the children by asking them what they already knew about trains and what they wanted to notice once they arrived.",
+          "During the outing, she guided them gently from simple observation to deeper thinking. She encouraged older children to help younger ones, repeated key words in both Hindi and English, and made space for every child to speak. By the time the group returned, the outing had naturally turned into material for reading, conversation, and reflection back at the centre."
+        ]
+      },
+      "learnings": [
+        "They connected classroom ideas with a real public space and real-world systems.",
+        "Reading signboards in a live setting helped emerging readers feel more confident.",
+        "The outing encouraged quieter children to speak, ask questions, and participate."
+      ],
+      "gallery": [
+        {
+          "src": "/activities/rail-museum-day/hero.jpg",
+          "alt": "Children on an outdoor educational outing",
+          "caption": "The outing began with excitement and curiosity as the children entered a space many were seeing for the first time."
+        },
+        {
+          "src": "/activities/rail-museum-day/group.jpg",
+          "alt": "Students gathered with their teacher",
+          "caption": "The group moved through the museum together, observing, asking questions, and learning from one another."
+        },
+        {
+          "src": "/activities/rail-museum-day/seema.jpg",
+          "alt": "Seema Singla with students",
+          "caption": "Seema helped turn the visit into a thoughtful learning experience rather than just a day out."
+        }
+      ]
+    }
+  ]
+}

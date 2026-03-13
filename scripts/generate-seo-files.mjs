@@ -1,19 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadSeoConfig } from "./load-seo-config.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 
-const configPath = path.join(projectRoot, "src", "seo", "seo-config.json");
 const publicDir = path.join(projectRoot, "public");
-
-const readConfig = () => JSON.parse(fs.readFileSync(configPath, "utf8"));
 
 const buildSitemap = ({ site, routes }) => {
   const lastmod = new Date().toISOString();
   const urlEntries = routes
+    .filter((route) => !route.noindex)
     .map((route) => {
       const loc = new URL(route.path, site.siteUrl).toString();
 
@@ -51,7 +50,7 @@ const buildRobots = ({ site }) =>
     "",
   ].join("\n");
 
-const config = readConfig();
+const config = loadSeoConfig(projectRoot);
 
 if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });

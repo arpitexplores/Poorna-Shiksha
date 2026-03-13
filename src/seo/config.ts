@@ -1,4 +1,5 @@
 import seoConfigData from "@/seo/seo-config.json";
+import { activitySeoRoutes } from "@/content/activities";
 
 type ChangeFrequency = "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
 
@@ -17,6 +18,7 @@ type RouteConfig = {
   description: string;
   changefreq: ChangeFrequency;
   priority: number;
+  noindex?: boolean;
 };
 
 type SEOConfig = {
@@ -35,7 +37,7 @@ const normalizePath = (path: string) => {
 };
 
 export const siteConfig = seoConfig.site;
-export const routeSEO = seoConfig.routes;
+export const routeSEO = [...seoConfig.routes, ...activitySeoRoutes];
 
 export const getRouteSEO = (pathname: string) => {
   const normalizedPath = normalizePath(pathname);

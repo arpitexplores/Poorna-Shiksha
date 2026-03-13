@@ -213,6 +213,67 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="section-pad">
+        <div className="section-shell">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <p className="eyebrow">Activities</p>
+            <h2 className="section-heading">Learning through books, creativity, and lived experiences</h2>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+              Every week brings a different kind of learning. Some moments are quiet and focused, while others are messy,
+              creative, and full of discovery. Together, they help the children build confidence and curiosity.
+            </p>
+          </Reveal>
+
+          <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-3">
+            {[
+              {
+                image: activityReading,
+                title: "Reading & Storytelling",
+                description: "Building literacy through engaging stories, shared reading, and conversations that help children find their voice.",
+              },
+              {
+                image: activityArt,
+                title: "Art & Creativity",
+                description: "Expressing imagination through painting, drawing, craft projects, and hands-on work that builds pride and confidence.",
+              },
+              {
+                image: activityOutdoor,
+                title: "Educational Outings",
+                description: "Learning comes alive through visits to gardens, museums, zoos, and other places that widen a child's world.",
+              },
+            ].map((item, index) => (
+              <Reveal key={item.title} delay={index * 100} className="activity-story-card overflow-hidden p-0">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.description}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={120} className="mt-10 text-center">
+            <Button asChild size="lg">
+              <Link to="/activities">
+                See All Activities
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Meet Seema Section */}
       <section className="section-accent section-pad">
         <div className="section-shell">

@@ -24,8 +24,8 @@
     },
     {
       "path": "/activities",
-      "title": "Learning Activities",
-      "description": "Explore Poorna Shiksha activities including reading, art, storytelling, and educational outings that make learning joyful and practical for children.",
+      "title": "Activity Stories",
+      "description": "Explore Poorna Shiksha activity stories, including outings, reading sessions, and creative workshops that show how children learn and how support is used.",
       "changefreq": "monthly",
       "priority": 0.8
     },
