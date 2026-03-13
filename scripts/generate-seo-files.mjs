@@ -10,7 +10,6 @@ const projectRoot = path.resolve(__dirname, "..");
 const publicDir = path.join(projectRoot, "public");
 
 const buildSitemap = ({ site, routes }) => {
-  const lastmod = new Date().toISOString();
   const urlEntries = routes
     .filter((route) => !route.noindex)
     .map((route) => {
@@ -19,7 +18,6 @@ const buildSitemap = ({ site, routes }) => {
       return [
         "  <url>",
         `    <loc>${loc}</loc>`,
-        `    <lastmod>${lastmod}</lastmod>`,
         `    <changefreq>${route.changefreq}</changefreq>`,
         `    <priority>${route.priority.toFixed(1)}</priority>`,
         "  </url>",

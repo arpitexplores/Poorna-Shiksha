@@ -18,6 +18,8 @@ type RouteConfig = {
   description: string;
   changefreq: ChangeFrequency;
   priority: number;
+  type?: "website" | "article";
+  image?: string;
   noindex?: boolean;
 };
 

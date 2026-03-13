@@ -96,6 +96,8 @@ This project now auto-generates SEO files from a shared config:
 - `public/sitemap.xml` (generated during build)
 - `public/robots.txt` (generated during build)
 
+These generated files are deployment artifacts and should not be edited manually or committed from hosting environments. Replit should build them fresh during deploy.
+
 Build flow:
 
 1. `prebuild` runs `npm run seo:generate`

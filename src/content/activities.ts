@@ -46,11 +46,15 @@ export const activities = [...payload.activities].sort((left, right) => right.da
 
 export const getActivityBySlug = (slug?: string) => activities.find((activity) => activity.slug === slug);
 
+const getActivityNoindex = (activity: Activity) => activity.noindex ?? activity.isSample;
+
 export const activitySeoRoutes = activities.map((activity) => ({
   path: `/activities/${activity.slug}`,
   title: activity.title,
   description: activity.seoDescription,
   changefreq: "monthly" as const,
   priority: 0.7,
-  noindex: activity.noindex ?? false,
+  type: "article" as const,
+  image: activity.heroImage,
+  noindex: getActivityNoindex(activity),
 }));

@@ -1,8 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, CalendarDays, Heart, MapPin } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import StructuredData from "@/components/StructuredData";
 import { Button } from "@/components/ui/button";
 import { getActivityBySlug } from "@/content/activities";
+import { siteConfig } from "@/seo/config";
 
 const ActivityDetail = () => {
   const { slug } = useParams();
@@ -29,8 +31,63 @@ const ActivityDetail = () => {
     );
   }
 
+  const canonicalUrl = new URL(`/activities/${activity.slug}`, siteConfig.siteUrl).toString();
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Activities",
+        item: new URL("/activities", siteConfig.siteUrl).toString(),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: activity.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: activity.title,
+    description: activity.seoDescription,
+    image: [new URL(activity.heroImage, siteConfig.siteUrl).toString()],
+    datePublished: activity.date,
+    dateModified: activity.date,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+    },
+    mainEntityOfPage: canonicalUrl,
+    about: activity.category,
+    contentLocation: {
+      "@type": "Place",
+      name: activity.location,
+    },
+  };
+
   return (
     <div className="page-shell">
+      <StructuredData id="schema-org-activity-breadcrumbs" data={breadcrumbSchema} />
+      <StructuredData id="schema-org-activity-article" data={articleSchema} />
+
       <section className="activity-hero section-pad">
         <div className="section-shell">
           <Reveal className="mb-8">

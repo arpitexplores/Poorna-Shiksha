@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /admin/
-Disallow: /api/
-Disallow: /auth/
-Disallow: /dashboard/
-
-Sitemap: https://poornashiksha.com/sitemap.xml

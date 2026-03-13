@@ -40,7 +40,7 @@ const SEOHead = ({ title, description, path, type = "website", image, noindex = 
   useEffect(() => {
     const fullTitle = `${title} | ${siteConfig.brandName}`;
     const canonicalUrl = new URL(path, siteConfig.siteUrl).toString();
-    const ogImage = image || siteConfig.defaultOgImage;
+    const ogImage = new URL(image || siteConfig.defaultOgImage, siteConfig.siteUrl).toString();
 
     document.title = fullTitle;
 

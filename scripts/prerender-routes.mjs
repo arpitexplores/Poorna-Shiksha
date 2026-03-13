@@ -58,7 +58,8 @@ const applySeoTags = (html, route) => {
   const title = `${route.title} | ${config.site.brandName}`;
   const description = route.description;
   const canonical = new URL(route.path, config.site.siteUrl).toString();
-  const ogImage = config.site.defaultOgImage;
+  const ogImage = new URL(route.image || config.site.defaultOgImage, config.site.siteUrl).toString();
+  const ogType = route.type || "website";
 
   let output = html;
   output = replaceTag(output, /<title>[^<]*<\/title>/i, `<title>${title}</title>`, "title");
@@ -68,7 +69,7 @@ const applySeoTags = (html, route) => {
 
   output = replaceMetaByProperty(output, "og:title", title);
   output = replaceMetaByProperty(output, "og:description", description);
-  output = replaceMetaByProperty(output, "og:type", "website");
+  output = replaceMetaByProperty(output, "og:type", ogType);
   output = replaceMetaByProperty(output, "og:url", canonical);
   output = replaceMetaByProperty(output, "og:image", ogImage);
   output = replaceMetaByProperty(output, "og:site_name", config.site.siteName);
@@ -110,6 +111,75 @@ const injectHomeStructuredData = (html) => {
   return html.replace("</head>", `    ${scripts}\n  </head>`);
 };
 
+const injectRouteStructuredData = (html, route) => {
+  const canonical = new URL(route.path, config.site.siteUrl).toString();
+  const pathSegments = route.path.split("/").filter(Boolean);
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: config.site.siteUrl,
+    },
+  ];
+
+  if (pathSegments.length > 1) {
+    const parentPath = `/${pathSegments.slice(0, -1).join("/")}`;
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      position: 2,
+      name: pathSegments[0]
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (character) => character.toUpperCase()),
+      item: new URL(parentPath, config.site.siteUrl).toString(),
+    });
+  }
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    position: breadcrumbItems.length + 1,
+    name: route.title,
+    item: canonical,
+  });
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbItems,
+  };
+
+  const scripts = [
+    `<script id="schema-org-breadcrumbs" type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`,
+  ];
+
+  if (route.type === "article") {
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: route.title,
+      description: route.description,
+      image: [new URL(route.image || config.site.defaultOgImage, config.site.siteUrl).toString()],
+      author: {
+        "@type": "Organization",
+        name: config.site.siteName,
+        url: config.site.siteUrl,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: config.site.siteName,
+        url: config.site.siteUrl,
+      },
+      mainEntityOfPage: canonical,
+    };
+
+    scripts.push(
+      `<script id="schema-org-article" type="application/ld+json">${JSON.stringify(articleSchema)}</script>`,
+    );
+  }
+
+  return html.replace("</head>", `    ${scripts.join("\n    ")}\n  </head>`);
+};
+
 const ensureDir = (dir) => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -126,6 +196,8 @@ config.routes.forEach((route) => {
     fs.writeFileSync(distIndexPath, routeHtml, "utf8");
     return;
   }
+
+  routeHtml = injectRouteStructuredData(routeHtml, route);
 
   const normalizedRoutePath = route.path.replace(/^\/+/, "").replace(/\/+$/, "");
   const routeDir = path.join(distDir, normalizedRoutePath);

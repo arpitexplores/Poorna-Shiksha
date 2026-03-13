@@ -14,7 +14,9 @@ export const loadSeoConfig = (projectRoot) => {
     description: activity.seoDescription,
     changefreq: "monthly",
     priority: 0.7,
-    noindex: activity.noindex ?? false,
+    type: "article",
+    image: activity.heroImage,
+    noindex: activity.noindex ?? activity.isSample,
   }));
 
   return {

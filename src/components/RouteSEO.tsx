@@ -22,7 +22,8 @@ const RouteSEO = () => {
       title={pageSEO.title}
       description={pageSEO.description}
       path={pageSEO.path}
-      type="website"
+      type={pageSEO.type}
+      image={pageSEO.image}
       noindex={pageSEO.noindex}
     />
   );
